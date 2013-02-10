@@ -55,7 +55,7 @@ Note: I highly recommend that you use Mac OS or linux(preferably ubuntu) platfor
    <tt>rails c</tt> to open the ruby on rails console 
 9. Open http://localhost:3000 on your browser. enjoy!
 10. There is a posibility of an un-used controller(s) still exist. feel free to remove them.
-11. Please edit the database configuration on link:/config/mongoid.yml according to your settings.
+11. Please edit the database configuration on link:/config/mongoid.yml in your local directory according to your settings.
 
 
 
