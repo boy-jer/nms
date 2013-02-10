@@ -1,0 +1,11 @@
+<%= simple_form_for(@invoice) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :invoice,  :input_html => {:value => counter_session}, :readonly => true  %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

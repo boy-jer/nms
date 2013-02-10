@@ -1,0 +1,35 @@
+
+<p class="row-fluid">
+  <h3 class="inset-text">
+    Judul: <%=t '.title', :default => @nl.title %> <br>
+    
+      Kategori:
+      <b><%= @nl.category %>,</b>
+      Tanggal Terbit:
+      <b><%= @nl.publish_date %>.</b>
+      
+    
+  </h3>
+</p>
+<fieldset class='form-horizontal'>
+<div class="page-header">
+    <%#=t '.title', :default => model_class.model_name.human.pluralize %>
+</div>
+<div class="news-content span9">
+  <b class ='lead'>Isi Berita:</b>
+  <p>
+    <%= @nl.content %>
+  </p>
+  <b>Photo</b>
+  <p>
+    <a href=#photoModal data-toggle="modal"><%= image_tag @nl.photo.url(:thumb), :class => 'img-polaroid' %></a>
+  </p>
+</div>
+<div id="photoModal" class ="modal hide fade img-polaroid"><%= image_tag @nl.photo.url %></div>
+
+<%= link_to 'Kembali', newslayout_index_path,:class => "btn btn-danger" %>
+
+</fieldset>
+<iframe id="open_here" class="modal fade hide img-polaroid">
+</iframe>
+

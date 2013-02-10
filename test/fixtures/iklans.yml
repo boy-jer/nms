@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  invoice: 1
+  entry_name: MyString
+  customer_name: MyString
+  input_date: 
+  publsh_date: 
+  type: 
+  category: MyString
+  segmentation: MyString
+  content: 
+  character: MyString
+  discount: MyString
+  price: 
+  session: MyString
+  confirmed: MyString
+
+two:
+  invoice: 1
+  entry_name: MyString
+  customer_name: MyString
+  input_date: 
+  publsh_date: 
+  type: 
+  category: MyString
+  segmentation: MyString
+  content: 
+  character: MyString
+  discount: MyString
+  price: 
+  session: MyString
+  confirmed: MyString

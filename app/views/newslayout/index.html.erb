@@ -1,0 +1,61 @@
+<p class="row-fluid">
+  <h3 class="inset-text"><%=t '.title', :default => "Daftar Berita" %></h3>
+</p>
+<%#= link_to 'Submit Berita', new_news_path, :class => 'btn btn-primary' %> <br />
+<table class="table table-striped table-hover">
+  <thead>
+  <tr>
+    <th>Kategori</th>
+    <th>Tanggal Terbit</th>
+    <th>Judul</th>
+    <th class='hidden-phone'>Header Berita</th>
+    <th class='hidden-phone'>Isi Berita</th>
+    <th class='hidden-phone'>Photo</th>
+    <th class='hidden-phone hidden-tablet hidden-desktop'>Status</th>
+    <th class='hidden-phone hidden-tablet hidden-desktop'>Published by</th>
+    <th class='hidden-phone hidden-tablet hidden-desktop'>Last edited by</th>
+    <th></th>    
+  </tr>
+  </thead>
+  <tbody>
+<%# @nl.each do |news| %>
+  <%= content_tag_for (:tr), @nl  do |news| %>
+      <td><%= news.category %></td>
+      <td><%= news.publish_date %></td>
+      <td><%= news.title %></td>
+      <td class='hidden-phone span8'><%= news.header %></td>
+      <td id='newsModal' class ="modal fade hide img-polaroid"><%= news.content %></td>
+      <td id='newsPhoto' class ="modal hide fade img-polaroid"><%= image_tag news.photo.url %></td>
+  	
+      <td class='hidden-phone hidden-tablet hidden-desktop'><%= news.status %></td>
+      <td class='hidden-phone hidden-tablet hidden-desktop'><%= news.published_by %></td>
+      <td class='hidden-phone hidden-tablet hidden-desktop'><%= news.last_edited_by %></td>
+      <td>
+      	<%= link_to 'Lihat', newslayout_path(news)  ,{:target => "open_here"}, :data => {:toggle => 'modal'}, :class => 'btn btn-mini' %>
+  		  <%#= link_to 'Lihat', '#meh', :data => {:toggle => 'modal'} , :class => 'btn btn-mini' %>
+      	<%#= link_to 'Photo', '#newsPhoto', :data => {:toggle => 'modal'} , :class => 'btn btn-mini' %>
+      </td>
+  <% end %>  
+<%# end %>
+  </tbody>  
+</table>
+
+<div id="newsModal" class="modal fade hide img-polaroid">
+  <fieldset class='form-horizontal'>
+    <div class="page-header">
+        <%#=t '.title', :default => model_class.model_name.human.pluralize %>
+    </div>
+      <div class="news-content span9">
+        <b class ='lead'>Isi Berita:</b>
+        <p>
+          <%#= news.content %>
+        </p>
+        <b>Photo</b>
+        <p>
+          <a href=#photoModal data-toggle="modal"><%#= image_tag news.photo.url(:thumb), :class => 'img-polaroid' %></a>
+        </p>
+      </div>
+    <div id="photoModal" class ="modal hide fade img-polaroid"><%#= image_tag @nl.photo.url %></div>
+  </fieldset>
+</div>
+<br />

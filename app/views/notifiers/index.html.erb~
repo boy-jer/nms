@@ -1,0 +1,37 @@
+<h1>Listing notifiers</h1>
+
+<table>
+  <tr>
+    <th>Entry name</th>
+    <th>Agent name</th>
+    <th>Notification message</th>
+    <th>Kwitansi log</th>
+    <th>Payment amount</th>
+    <th>Via bank</th>
+    <th>Bank account</th>
+    <th>Status checked</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<%= @notifiers.each do |notifier| %>
+  <tr>
+    <td><%= notifier.entry_name %></td>
+    <td><%= notifier.agent_name %></td>
+    <td><%= notifier.notification_message %></td>
+    <td><%= notifier.kwitansi_log %></td>
+    <td><%= notifier.payment_amount %></td>
+    <td><%= notifier.via_bank %></td>
+    <td><%= notifier.bank_account %></td>
+    <td><%= notifier.status_checked %></td>
+    <td><%= link_to 'Show', notifier %></td>
+    <td><%= link_to 'Edit', edit_notifier_path(notifier) %></td>
+    <td><%= link_to 'Destroy', notifier, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Notifier', new_notifier_path %>

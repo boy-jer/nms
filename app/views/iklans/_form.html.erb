@@ -1,0 +1,26 @@
+<%= simple_form_for @iklan, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :invoice, :input_html => {:value => counter_session}, :readonly => true %>
+    <%= f.input :entry_name, :input_html => { :value => current_user.agent, :readonly => true }  %>
+    <%= f.input :customer_name %>
+    <%= f.input :input_date, :input_html => { :value => Date.today }  %>
+    <%= f.input :publish_date, :as => :date, :start_year => Date.today.year,
+                              :end_year => Date.today.year - 12, :discard_day => true,
+                              :order => [:month, :year] %>
+    <%= f.input :type %>
+    <%= f.input :category, :collection => ['mobil', 'motor', 'rumah', 'tanah'] %>
+    <%= f.input :segmentation %>
+    <%= f.input :content, :as => :text  %>
+    <%= f.input :character %>
+    <%= f.input :discount %>
+    <%= f.input :price %>
+    <%= f.input :session %>
+    <%= f.input :confirmed %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

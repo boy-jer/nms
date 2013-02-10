@@ -1,0 +1,34 @@
+<h1>Listing invoices</h1>
+
+<%= link_to t('.new', :default => t("helpers.links.kirim_baru")),
+            new_invoice_path,
+            :class => 'btn btn-primary' %>
+<table class = "table table-striped table-hover">
+  <thead>
+  <tr>
+    <th>Invoice</th>
+    <th><%=t '.actions', :default => t("helpers.actions") %></th>
+  </tr>
+  </thead>
+  
+<tbody>
+  <% @invoices.each do |invoice| %>
+    <tr>
+      <td><%= invoice.invoice %></td>
+      <td><%= link_to t('.show', :default => t("helpers.links.show")),
+              invoice_path(invoice), :class => 'btn btn-mini' %></td>
+      <td><%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_invoice_path(invoice), :class => 'btn btn-mini' %></td>
+      <td><%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      invoice_path(invoice),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %></td>
+    </tr>
+  <% end %>
+</tbody>
+</table>
+
+<br />
+
+

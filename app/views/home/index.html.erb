@@ -1,0 +1,63 @@
+<div class="row-fluid" >
+	<div class='pk-home-flashstatus'>
+		<% if user_signed_in? %>
+			<% flash.each do |name, msg| %>
+			
+			  	<div class="span4 alert alert-<%= name == :notice ? "success" : "error" %>">
+			  	Hello <%= current_user.username %> Selamat bekerja :)	
+			    <a class="close" data-dismiss="alert">×</a>
+			   	</div>
+		 	
+		<% end %> 
+	</div>
+	<p class="row-fluid"><h3 class='inset-text'>Global Dashboard</h3></p>
+	<div class='tabbable'>
+		<ul class="nav-tabs nav">
+			<li class='active'><a href="#pk-archive" data-toggle="tab">Data Arsip Berita</a></li>
+			<li><a href="#pk-today" data-toggle="tab">Berita Hari Ini</a></li>
+			<li><a href="#pk-statistics" data-toggle="tab">Statistik Berita</a></li>
+			<li><a href="#pk-chart" data-toggle="tab">Diagram statistik</a></li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane fade active in" id="pk-archive">
+				<p class='lead'>Data Statistik Arsip Berita</p>	
+				<p>Total jumlah arsip berita: <%= @stats %></p>
+				<p>Total Jumlah berita diterbitkan: </p>
+				<p>Total Jumlah berita tidak diterbitkan:</p>
+				<%#= content_tag :div, "", id: "news-stats-donut", data: {news: News.chart_data} %>
+				<%= content_tag :div, "", id: "news-stats-donut", 
+					data: {
+							kriminal: News.where(:category => "Kriminal").count,
+							nah:  News.where(:category => "Nah Ini Dia").count,
+    						mega:  News.where(:category => "Megapolitan").count	
+						},
+					class:"span4"	 
+				%>
+
+			</div>
+			
+			<div class="tab-pane fade " id="pk-today">
+				<p class="lead">Statistik berita hari ini</p>
+				<p>Berita terbit hari ini:</p>
+				<p>Berita masuk hari ini:</p>
+			</div>
+		
+			<div class="tab-pane fade" id="pk-statistics">
+				<p class='lead'>Data statistik berita</p>
+				<p>Total Berita tahun ini:</p>
+				<p>Total Berita bulan ini:</p>
+			</div>
+
+			<div class="tab-pane fade" id="pk-chart">
+				<p class="lead">Diagram statistik</p>		
+			</div>
+		</div>
+	</div>
+</div>
+
+<% else %>
+<h4>Hello, Silahkan login terlebih dahulu.</h4>
+<% end %>
+
+
+

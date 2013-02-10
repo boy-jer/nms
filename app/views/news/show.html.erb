@@ -1,0 +1,54 @@
+<p class="row-fluid">
+  <h3 class="inset-text">
+    Judul: <%=t '.title', :default => @news.title %> <br>
+    
+      Kategori:
+      <b><%= @news.category %>,</b>
+      Tanggal Terbit:
+      <b><%= @news.publish_date %>.</b>
+      
+    
+  </h3>
+</p>
+<fieldset class='form-horizontal'>
+<div class="page-header">
+    <%#=t '.title', :default => model_class.model_name.human.pluralize %>
+</div>
+<div class="news-content span9">
+  <b class ='lead'>Isi Berita:</b>
+  <p>
+    <%= @news.content %>
+  </p>
+  <b>Photo</b>
+  <p>
+    <a href=#photoModal data-toggle="modal"><%= image_tag @news.photo.url(:thumb), :class => 'img-polaroid' %></a>
+  </p>
+</div>
+<div id="photoModal" class ="modal hide fade img-polaroid"><%= image_tag @news.photo.url %></div>
+<div>
+  <p>
+    <b>Status:</b>
+    <%= @news.status  %>
+  </p>
+  <p>
+    <b>Disubmit oleh:</b>
+    <%= @news.submitted_by %>
+  </p>
+  <p>
+    <b>Published by:</b>
+    <%= @news.published_by %>
+  </p>
+
+  <p>
+    <b>Edit terakhir:</b>
+    <%= @news.last_edited_by %>
+  </p>
+</div>
+
+<%= link_to 'Edit', edit_news_path(@news), :class => 'btn btn-primary' %> 
+<%= link_to 'Kembali', news_index_path,:class => "btn btn-danger" %>
+
+
+</fieldset>
+
+

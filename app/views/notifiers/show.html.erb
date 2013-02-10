@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Entry name:</b>
+  <%= @notifier.entry_name %>
+</p>
+
+<p>
+  <b>Agent name:</b>
+  <%= @notifier.agent_name %>
+</p>
+
+<p>
+  <b>Notification message:</b>
+  <%= @notifier.notification_message %>
+</p>
+
+<p>
+  <b>Kwitansi log:</b>
+  <%= @notifier.kwitansi_log %>
+</p>
+
+<p>
+  <b>Payment amount:</b>
+  <%= @notifier.payment_amount %>
+</p>
+
+<p>
+  <b>Via bank:</b>
+  <%= @notifier.via_bank %>
+</p>
+
+<p>
+  <b>Bank account:</b>
+  <%= @notifier.bank_account %>
+</p>
+
+<p>
+  <b>Status checked:</b>
+  <%= @notifier.status_checked %>
+</p>
+
+
+<%= link_to 'Edit', edit_notifier_path(@notifier) %> |
+<%= link_to 'Back', notifiers_path %>

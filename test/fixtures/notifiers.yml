@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  entry_name: MyString
+  agent_name: MyString
+  notification_message: MyString
+  kwitansi_log: MyString
+  payment_amount: 
+  via_bank: MyString
+  bank_account: MyString
+  status_checked: MyString
+
+two:
+  entry_name: MyString
+  agent_name: MyString
+  notification_message: MyString
+  kwitansi_log: MyString
+  payment_amount: 
+  via_bank: MyString
+  bank_account: MyString
+  status_checked: MyString

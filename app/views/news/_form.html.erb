@@ -1,0 +1,26 @@
+<%= simple_form_for @news,:html => { :class => 'form-horizontal', :multipart => true } do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+
+
+    <%= f.input :submitted_by, :input_html =>{ :value => current_user.username }, :as => :hidden %>
+    <%= f.input :category, collection: Newscategory::CATEGORIES, prompt:"Pilih kategori berita" %>
+    
+    <%= f.input :publish_date, :input_html => {:class => 'datepicker'}, label: 'Tanggal Terbit' %>
+    <%= f.input :title, label: 'Judul Berita', :input_html => { :class => 'span8'} %>
+    <%= f.input :header, label: 'Header Berita', :as => :text, :input_html => {:class => 'span8', :rows => 4} %>
+    <%= f.input :content, label:'Isi berita', :as => :text, :input_html =>{ :class => 'span8', :rows => 10} %>
+    <%= f.label :photo %>
+    <%= f.file_field :photo %>
+  
+    <%= f.input :status,:input_html =>{ :value => "2" }, :as => :hidden %>
+    <%= f.input :published_by,:input_html =>{ :value => "" }, :as => :hidden %>
+    <%= f.input :last_edited_by,:input_html =>{ :value => current_user.username }, :as => :hidden %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Submit berita', :class => 'btn btn-primary' %>
+    <%= link_to 'Batal', news_index_path, :class => 'btn btn-danger' %>
+  </div>
+<% end %>

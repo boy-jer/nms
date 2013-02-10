@@ -1,0 +1,29 @@
+<%= simple_form_for @notifier, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> Notification</legend>  
+      <% if @notifier.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@notifier.errors.count, "error") %> prohibited this notifier from being saved:</h2>
+
+        <ul>
+        <% @notifier.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+      <% end %>
+
+      <%= f.input :entry_name %>
+      <%= f.input :agent_name %>
+      <%= f.input :notification_message %>
+      <%= f.input :kwitansi_log %>
+      <%= f.input :payment_amount %>
+      <%= f.input :via_bank %>
+      <%= f.input :bank_account %>
+      <%= f.input :status_checked %>
+      <div class="form-actions">
+      <%= f.submit "Kirim", :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', notifiers_path, :class => 'btn' %>
+    </div>
+  </fieldset>
+<% end %>

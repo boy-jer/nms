@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">	
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codename: pkadv</title>
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "You don't wanna know!" %>">
+  <%= stylesheet_link_tag    "application", :media => "all"  %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= yield(:head) %>
+</head>
+<body class="<%= controller_name %> <%= action_name %>">
+<!--[if lt IE 7]>
+            <p class="chromeframe">Anda menggunakan browser internet yang <strong>tidak update</strong>. Silahkan pilih dan install salah satu browser yang up-to-date <a href="http://browsehappy.com/">disini</a> atau <a href="http://www.google.com/chromeframe/?redirect=true">aktifkan Google Chrome Frame</a>.</p>
+<![endif]-->
+  	<header class="navbar navbar-fixed-top">
+  		<div class="row-fluid headerbar visible-desktop visible-phone visible-tablet">
+
+			<div class="span12 headerbar-wrapper">
+				<div class="span4 headerbar-logo"><b class="display-date"><strong><%= Time.now.strftime("%d %B %Y") %></strong></b>
+				</div>
+				<div class="span8 headerbar-usernav">
+					<% if user_signed_in? %>
+						  <b class="header-link"><i class="icon-user icon-white"></i> <%= current_user.username %></b> 
+					<% else %>
+						<div class="row-fluid">
+							<div class="span5 offset8 login-wrapper">
+							<%= form_for("user", :url => user_session_path, :class => "form-inline") do |f| %>
+								<div class="username-wrapper">
+									<%= f.text_field :username, :class => 'input-small', :placeholder => "Username..." %>
+								</div>
+								<div class="password-wrapper">
+									<%= f.password_field :password, :class => 'input-small', :placeholder => "Password..." %>
+								</div>
+								<div class="submit-wrapper">
+									<%= f.submit "log in", :class => "btn-primary btn-info" %>
+								</div>
+							<% end %>
+							</div>	
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	    <nav class="navbar-inner">
+	        <div class="container">
+	        <a class="brand visible-phone visible-tablet" href="#">Poskota</a>
+	        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	        </a>
+	        <% if user_signed_in? %>
+	        
+		        <div class="nav-collapse">
+		        
+				  <ul class="nav">
+				  	<li><%= link_to "News Dashboard", root_path, :class => 'brand' %></li>
+		            <li><%= link_to "Manajemen Berita", news_index_path %></li>
+		            <li><%= link_to "Kategori", newscategories_path %></li>
+		            <li><%= link_to "Publish", publish_index_path %></li>
+		            <li><%= link_to "Layout", newslayout_index_path %></li>
+		            <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+		            <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+		          </ul>  
+		    <% else %>
+		        </div>
+	      	</div>
+	      	<% end %>	
+	    </nav>
+    </header>
+  
+  	<div id="main" role="main">
+		<div id="container">
+			<div class="content">
+				<div class="row-fluid">
+					<div class="span12 maincontent">
+					 	<% flash.each do |name, msg| %>
+					 		<% if msg.is_a?(String) %>
+							  	<div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+							    <a class="close" data-dismiss="alert">×</a>
+						    	<%= msg %>
+						  		</div>
+						  	<% end %>
+					  	<% end %> 
+
+					  	<%= yield %>
+				  	</div>
+			  	</div>
+			  		
+		  	</div>
+		</div> <!--! end of .container -->
+	</div> <!--! end of #main -->
+
+	<footer>
+		<div class="foot">
+			
+				<p>© 2013. All Rights Reserved. MIT LICENSED Developed by <a href="http://twitter.com/rianandrea">Rian Andrea</a> - <a href="http://autre.co">auTre Systems Inc.</a> </p>
+				
+			
+		</div>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,114 @@
+// Set the correct sprite paths
+$iconSpritePath: image-path('glyphicons-halflings.png');
+$iconWhiteSpritePath: image-path('glyphicons-halflings-white.png');
+
+// $navbarBackground: #555;
+// $navbarBackgroundHighlight: #888;
+$navbarBackground: #888;
+$navbarBackgroundHighlight: #000000;
+$navbarText: #eee;
+$navbarLinkColor: #eee;
+//$linkColor: #C03932;
+$linkColorHover: #000;
+
+@import "bootstrap";
+
+body { padding-top: 135px; }
+
+@import "bootstrap-responsive";
+
+// .navbar .brand {
+//   color: #FAFFB8;
+// }	
+
+
+
+.navbar{
+	margin-bottom: 0px;
+	.headerbar {
+		
+			background-image: url('header_true_crop_blue.jpg');
+			background-repeat: repeat-x;
+			//width: 100%;
+			height: 100px;
+		
+			.headerbar-wrapper {
+
+				//width: 100%;
+				height: 100px;
+				background-image: url('header_right_true_blue.jpg');
+				background-repeat: no-repeat;
+				background-position: right;
+				.headerbar-logo {
+					float: left;
+					width: 300px;
+					height: 100px;
+					background-image: url('logo.png');
+					background-repeat: no-repeat;
+					.display-date{
+						padding-top: 20px;
+						padding-left: 32px;
+					}
+				}
+				.headerbar-usernav {
+					float: right;
+					padding-left: 20px;
+					//width: 700px;
+					margin-top: 5px;
+					.header-link{ 
+						float: right;
+						padding-right: 20px;
+					}
+					.login-wrapper{
+						// float: left;
+						// padding-right: 10px;
+						.username-wrapper{ 
+							float: left; 
+							margin-right: 5px;
+						}
+						.password-wrapper{ 
+							float: left;
+							margin-right: 5px
+						}
+						.submit-wrapper{ 
+							float: left;
+							padding-top: 2px;
+						}
+					}
+				}
+			}
+	}	
+
+	.navbar-inner {
+		
+	 
+		
+	}
+	.container { 
+		height: auto; 
+	}
+		.nav-collapse {
+
+		}
+}
+
+#main{
+	#container{
+		.content{
+			.row-fluid{
+				.maincontent{
+					padding-left: 10px;
+					padding-right: 10px;
+				}
+			}
+		}
+	}
+
+}
+
+.foot{
+	margin-top: 5px;
+	float: left;
+	padding-right: 20px;
+	color: #6c6a6a;
+}	
