@@ -61,7 +61,7 @@ Note: I highly recommend that you use Mac OS or linux(preferably ubuntu) platfor
 
 
 == Attention!!
-* See The LICENSE : link:files/LICENSE.md.
+* See The LICENSE : link:LICENSE.md.
 
 * Feel free to use, distribute, and please Fork to contribute. I'm always open to suggestions.
 
