@@ -37,25 +37,27 @@ Note: I highly recommend that you use Mac OS or linux(preferably ubuntu) platfor
       My development server is ubuntu.
 
 1. Install Ruby via rbenv. Follow instructions here https://github.com/sstephenson/rbenv/#installation
-2. Install Ruby On Rails. See installing Ruby on rails instructions below.
-3. Install Mongodb-10gen. Follow installation instructions on various platform here http://docs.mongodb.org/manual/installation/
+2. Install Ruby gem. See instructions here. https://rubygems.org/pages/download
+3. Install Ruby On Rails(will automatically installed when running point no.. Look below for Ruby on rails introductions.
+4. Install Mongodb-10gen. Follow installation instructions on various platform here http://docs.mongodb.org/manual/installation/
    Use homebrew on mac, on terminal console, run : homebrew install mongodb 
-4. Go to your local web server(Apache, Nginx) development directory.
-5. Install Git(if you don't have it on your system). 
+5. Go to your local web server(Apache, Nginx) development directory.
+6. Install Git(if you don't have it on your system). 
    Install instructions. https://help.github.com/articles/set-up-git and http://git-scm.com/downloads.
-5. run this on that directory:
+7. run this on that directory:
    <tt>git clone git://github.com/riandrea/nms.git</tt> 
-6. change to the directory, on your terminal console, run:
+8. change to the directory, on your terminal console, run:
    <tt>cd nms</tt>
-7. run bundle install to install and setup everything on the Gemfile:
+9. run bundle install to install and setup everything on the Gemfile:
    <tt>bundle install</tt> or <tt>sudo bundle install</tt> if needed(usually on linux environment).
-8. run this command to start the application on development server:
+10. Please edit the database configuration on link:/config/mongoid.yml in your local directory according to your settings.
+11. There is a posibility of an un-used controller(s) still exist. feel free to remove them.
+12. run this command to start the application on development server:
    <tt>rails s</tt>
-   press ctrl+c to stop the server.
+   press ctrl+c if you want to stop the server.
    <tt>rails c</tt> to open the ruby on rails console 
-9. Open http://localhost:3000 on your browser. enjoy!
-10. There is a posibility of an un-used controller(s) still exist. feel free to remove them.
-11. Please edit the database configuration on link:/config/mongoid.yml in your local directory according to your settings.
+
+13. Open http://localhost:3000 on your browser. enjoy!
 
 
 
