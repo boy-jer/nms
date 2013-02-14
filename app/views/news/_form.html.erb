@@ -7,7 +7,7 @@
     <%= f.input :submitted_by, :input_html =>{ :value => current_user.username }, :as => :hidden %>
     <%= f.input :category, collection: Newscategory::CATEGORIES, prompt:"Pilih kategori berita" %>
     
-    <%= f.input :publish_date, :input_html => {:class => 'datepicker'}, label: 'Tanggal Terbit' %>
+    <%= f.input :publish_date, :input_html => {:class => 'pickdate' }, label: 'Tanggal Terbit' %>
     <%= f.input :title, label: 'Judul Berita', :input_html => { :class => 'span8'} %>
     <%= f.input :header, label: 'Header Berita', :as => :text, :input_html => {:class => 'span8', :rows => 4} %>
     <%= f.input :content, label:'Isi berita', :as => :text, :input_html =>{ :class => 'span8', :rows => 10} %>

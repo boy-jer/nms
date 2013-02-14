@@ -12,15 +12,18 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require raphael
-//= require morris
 //= require bootstrap
 //= require bootstrap-datepicker
+//= require raphael
+//= require morris
+//= require_self
 //= require_tree .
+
+
 
 $(function(){
 	//datepicker
-	$(".datepicker").datepicker({
+	$('.pickdate').datepicker({
 		"format":"yyyy-mm-dd",
 		"weekstart": 1,
 		"autoclose": true
@@ -32,12 +35,5 @@ $(function(){
 	//newslayout modal
 	$('.newsModal').modal()	
 
-	// Dashboard tabs
-	
-	/*$('#pkTabs a').click(function (e) {
-  	e.preventDefault();
-  	$(this).tab('show');
-  	$('#pkTabs a[href="#pk-archive"]').tab('show');
-	})*/
-
 })
+

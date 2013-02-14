@@ -2,7 +2,8 @@ class PublishController < ApplicationController
 
 
   def index
-  	@publish = News.where(:status => 2)
+  	@published = News.where(:status => 1)
+    @unpublished = News.where(:status => 2)
   	respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @publish }
