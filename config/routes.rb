@@ -1,5 +1,9 @@
 Pkadv::Application.routes.draw do
   
+  get "archive/index"
+
+  get "archive/show"
+
   get "newslayout/index"
 
   get "newslayout/show"
@@ -23,6 +27,8 @@ Pkadv::Application.routes.draw do
   resources :iklans
 
   resources :invoices
+
+  resources :archive
 
   get "invoice/index"
 

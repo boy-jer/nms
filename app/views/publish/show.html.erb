@@ -1,20 +1,24 @@
-<p class="row-fluid">
+<div class="row-fluid inset-text-background">
   <h3 class="inset-text">
     Judul: <%=t '.title', :default => @publish.title %> <br>
-    
+      <span class='inset-text2'>
       Kategori:
       <b><%= @publish.category %>,</b>
       Tanggal Terbit:
       <b><%= @publish.publish_date %>.</b>
-      
-    
+      </span>
   </h3>
-</p>
+</div>
+
 <fieldset class='form-horizontal'>
 <div class="page-header">
     <%#=t '.title', :default => model_class.model_name.human.pluralize %>
 </div>
 <div class="news-content span9">
+  <b class ='lead'>Berita asli:</b>
+  <p>
+    <%= @publish.ori_content %>
+  </p>
   <b class ='lead'>Isi Berita:</b>
   <p>
     <%= @publish.content %>
@@ -28,7 +32,11 @@
 <div>
   <p>
     <b>Status:</b>
-    <%= @publish.status  %>
+    <% if @publish.status == "1" %>
+      Published
+    <% else %>    
+      Unpublished
+    <% end %>
   </p>
   <p>
     <b>Disubmit oleh:</b>
@@ -46,7 +54,8 @@
 </div>
 
 <%= link_to 'Edit', edit_publish_path(@publish), :class => 'btn btn-primary' %> 
-<%= link_to 'Kembali', publish_index_path,:class => "btn btn-danger" %>
+<%#= link_to 'Kembali', publish_index_path,:class => "btn btn-danger" %>
+<%= link_to_function "kembali", "history.back()", :class => "btn btn-danger"  %>
 
 
 </fieldset>

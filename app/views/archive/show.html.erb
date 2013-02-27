@@ -1,0 +1,40 @@
+<div class="row-fluid inset-text-background">
+  <h3 class="inset-text">
+    Judul: <%=t '.title', :default => @arc.title %> <br>
+    <span class='inset-text2'>
+        Kategori:
+      <b><%= @arc.category %>,</b>
+      Tanggal Terbit:
+      <b><%= @arc.publish_date %>.</b>
+    </span>
+  </h3>
+</div>
+<fieldset class='form-horizontal'>
+<div class="page-header">
+    <%#=t '.title', :default => model_class.model_name.human.pluralize %>
+</div>
+<div class="news-content span9">
+  <b class ='lead'><strong>Isi Berita:</strong></b>
+  <p>
+    <%= @arc.content %>
+  </p>
+  <b>Photo</b>
+  <p>
+    <a href=#photoModal data-toggle="modal"><%= image_tag @arc.photo.url(:thumb), :class => 'img-polaroid' %></a>
+  </p>
+</div>
+<div id="photoModal" class ="modal hide fade img-polaroid"><%= image_tag @arc.photo.url %></div>
+<div class="span2">
+  <p><strong>Berita Oleh: <%= @arc.submitted_by %></strong></p>
+  <p><strong>Dipublish Oleh: <%= @arc.published_by %></strong></p>
+  <%= link_to 'Kembali', archive_index_path,:class => "btn btn-danger" %>
+</div>
+
+
+
+
+
+</fieldset>
+<iframe id="open_here" class="modal fade hide img-polaroid">
+</iframe>
+

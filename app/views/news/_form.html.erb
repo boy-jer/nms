@@ -5,15 +5,13 @@
 
 
     <%= f.input :submitted_by, :input_html =>{ :value => current_user.username }, :as => :hidden %>
-    <%= f.input :category, collection: Newscategory::CATEGORIES, prompt:"Pilih kategori berita" %>
-    
-    <%= f.input :publish_date, :input_html => {:class => 'pickdate' }, label: 'Tanggal Terbit' %>
+    <%= f.input :category, collection: cats, label: 'kategori', prompt:"Pilih kategori berita" %>
+    <%= f.input :publish_date, :input_html => {:class => 'pickdate' }, label: 'Tanggal Terbit', :placeholder => 'Tanggal terbit...' %>
     <%= f.input :title, label: 'Judul Berita', :input_html => { :class => 'span8'} %>
     <%= f.input :header, label: 'Header Berita', :as => :text, :input_html => {:class => 'span8', :rows => 4} %>
-    <%= f.input :content, label:'Isi berita', :as => :text, :input_html =>{ :class => 'span8', :rows => 10} %>
-    <%= f.label :photo %>
+    <%= f.input :ori_content, label:'Isi berita', :as => :text, :input_html =>{ :class => 'span8', :rows => 10} %>
+    <%= f.label :photo %>&nbsp;&nbsp;&nbsp;&nbsp;
     <%= f.file_field :photo %>
-  
     <%= f.input :status,:input_html =>{ :value => "2" }, :as => :hidden %>
     <%= f.input :published_by,:input_html =>{ :value => "" }, :as => :hidden %>
     <%= f.input :last_edited_by,:input_html =>{ :value => current_user.username }, :as => :hidden %>

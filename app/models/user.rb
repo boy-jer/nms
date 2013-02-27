@@ -6,7 +6,7 @@ class User
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :username       
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :level       
 
   ## Database authenticatable
   field :username,           :type => String, :default => "" 
@@ -47,4 +47,6 @@ class User
 
   ## Token authenticatable
   # field :authentication_token, :type => String
+  LEVELS = %w[1 2 3 4 5 6 7]
+
 end

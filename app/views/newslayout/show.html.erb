@@ -1,22 +1,20 @@
-
-<p class="row-fluid">
+<div class="row-fluid inset-text-background">
   <h3 class="inset-text">
     Judul: <%=t '.title', :default => @nl.title %> <br>
-    
-      Kategori:
+    <span class='inset-text2'>
+        Kategori:
       <b><%= @nl.category %>,</b>
       Tanggal Terbit:
       <b><%= @nl.publish_date %>.</b>
-      
-    
+    </span>
   </h3>
-</p>
+</div>
 <fieldset class='form-horizontal'>
 <div class="page-header">
     <%#=t '.title', :default => model_class.model_name.human.pluralize %>
 </div>
 <div class="news-content span9">
-  <b class ='lead'>Isi Berita:</b>
+  <b class ='lead'><strong>Isi Berita:</strong></b>
   <p>
     <%= @nl.content %>
   </p>
@@ -26,8 +24,14 @@
   </p>
 </div>
 <div id="photoModal" class ="modal hide fade img-polaroid"><%= image_tag @nl.photo.url %></div>
+<div class="span2">
+  <p><strong>Berita Oleh: <%= @nl.submitted_by %></strong></p>
+  <p><strong>Dipublish Oleh: <%= @nl.published_by %></strong></p>
+  <%#= link_to 'Kembali', newslayout_index_path,:class => "btn btn-danger" %>
+  <%#= link_to 'Kembali', :back,:class => "btn btn-danger" %>
+  <%= link_to_function 'Kembali', "history.back()",:class => "btn btn-danger" %>
+</div>
 
-<%= link_to 'Kembali', newslayout_index_path,:class => "btn btn-danger" %>
 
 </fieldset>
 <iframe id="open_here" class="modal fade hide img-polaroid">

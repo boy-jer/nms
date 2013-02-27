@@ -9,6 +9,7 @@ class News
   field :publish_date, type: Date
   field :title, type: String
   field :header, type: String
+  field :ori_content, type: String
   field :content, type: String
   field :status, type: String
   field :published_by, type: String
@@ -17,6 +18,12 @@ class News
   field :updated_at, type: DateTime
 
   mount_uploader :photo, PhotoUploader
+
+  validates :category, :presence => {:message => "Kategori berita belum dipilih!"}
+  validates :publish_date, :presence => {:message => "Tanggal terbit tidak boleh kosong!"} 
+  validates :title, :presence => {:message => "Judul tidak boleh kosong!"} 
+  validates :header, :presence => {:message => "Header tidak boleh kosong!"} 
+  validates :ori_content, :presence => {:message => "Isi berita tidak boleh kosong!"} 
 
 #begin
 #  def self.chart_data

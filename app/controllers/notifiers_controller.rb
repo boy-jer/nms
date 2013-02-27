@@ -1,5 +1,4 @@
 class NotifiersController < ApplicationController
-  
   before_filter :authenticate_user!
   # GET /notifiers
   # GET /notifiers.json

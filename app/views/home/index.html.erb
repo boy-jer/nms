@@ -10,7 +10,10 @@
 		 	
 		<% end %> 
 	</div>
-	<p class="row-fluid"><h3 class='inset-text'>Global Dashboard</h3></p>
+	<div class="row-fluid inset-text-background">
+		<h3 class='inset-text'>News Dashboard</h3>
+	</div>
+	
 	<div class='tabbable'>
 		<ul class="nav-tabs nav">
 			<li class='active'><a href="#pk-archive" data-toggle="tab">Data Arsip Berita</a></li>
@@ -20,43 +23,221 @@
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane fade active in" id="pk-archive">
-				<p class='lead'>Data Statistik Arsip Berita</p>	
-				<p>Total jumlah arsip berita: <%= @stats %></p>
-				<p>Total Jumlah berita diterbitkan: </p>
-				<p>Total Jumlah berita tidak diterbitkan:</p>
-				<%#= content_tag :div, "", id: "news-stats-donut", data: {news: News.chart_data} %>
-				<%= content_tag :div, "", id: "news-stats-donut", 
-					data: {
-							kriminal: News.where(:category => "Kriminal").count,
-							nah:  News.where(:category => "Nah Ini Dia").count,
-    						mega:  News.where(:category => "Megapolitan").count	
-						},
-					class:"span4"	 
-				%>
+				<p class='lead text-center inset-text-background inset-text2'>Data Statistik Arsip Berita</p>	
+				<div class="row-fluid">
+					<div id="total-stats" class="span4 donut-container">
+						<p class="inset-text-background inset-text4">Total arsip berita: <strong><%= @stats %></strong> berita.</p>
+						<%#= content_tag :div, "", id: "news-stats-donut", data: {news: News.chart_data} %>
+						<%= content_tag :div, "", id: "news-stats-donut", 
+							data: {
+									kri: @kri,
+									nah: @nah,
+		    						meg: @meg,
+		    						nas: @nas,
+		    						ipt: @ipt,
+		    						kes: @kes,
+		    						spo: @spo,
+		    						sel: @sel,
+		    						nus: @nus,
+		    						int: @int,
+		    						edu: @edu,
+		    						wis: @wis,
+		    						sor: @sor,
+		    						opi: @opi
+								},
+							class:"donut-stats"	 
+						%>					
+					</div>
 
+					<div id="total-pub-stats" class="span4 donut-container">
+						<p class="inset-text-background inset-text4">Total berita diterbitkan: <strong><%= @pub %></strong> berita.</p>
+						<%= content_tag :div, "", id: "pub-stats-donut", 
+							data: {
+									kri: @pubkri,
+									nah: @pubnah,
+		    						meg: @pubmeg,
+		    						nas: @pubnas,
+		    						ipt: @pubipt,
+		    						kes: @pubkes,
+		    						spo: @pubspo,
+		    						sel: @pubsel,
+		    						nus: @pubnus,
+		    						int: @pubint,
+		    						edu: @pubedu,
+		    						wis: @pubwis,
+		    						sor: @pubsor,
+		    						opi: @pubopi
+								},
+							class:"donut-stats"	 
+						%>										
+					</div>
+					
+					<div id="total-unpub-stats" class="span4 donut-container">
+						<p class="inset-text-background inset-text4">Total berita tidak diterbitkan: <strong><%= @unpub %></strong> berita.</p>
+						<%= content_tag :div, "", id: "unpub-stats-donut", 
+							data: {
+									kri: @unpubkri,
+									nah: @unpubnah,
+		    						meg: @unpubmeg,
+		    						nas: @unpubnas,
+		    						ipt: @unpubipt,
+		    						kes: @unpubkes,
+		    						spo: @unpubspo,
+		    						sel: @unpubsel,
+		    						nus: @unpubnus,
+		    						int: @unpubint,
+		    						edu: @unpubedu,
+		    						wis: @unpubwis,
+		    						sor: @unpubsor,
+		    						opi: @unpubopi
+								},
+							class:"donut-stats"	 
+						%>										
+					</div>
+				</div>
 			</div>
 			
-			<div class="tab-pane fade " id="pk-today">
-				<p class="lead">Statistik berita hari ini</p>
-				<p>Berita terbit hari ini:</p>
-				<p>Berita masuk hari ini:</p>
+			<div class="tab-pane fade" id="pk-today">
+				<p class="lead inset-text-background inset-text2">Statistik berita hari ini</p>
+				<div>
+					<p>
+						Berita terbit hari ini: <a href=#todays-pubs data-toggle="modal" data-toggle="tooltip" title="Lihat!" data-delay={show: 0, hide: 100}><%= @todaypub %></a>
+					</p>
+					<p>
+						Berita masuk hari ini: <a href=#todays-stats data-toggle="modal" data-toggle="tooltip" title="Lihat!" data-delay={show: 0, hide: 100}><%= @todaystats %></a>
+					</p>
+				</div>
+				<div id="todays-pubs" class ="modal hide fade ">
+					<% if @todaypubs.exists? %>
+					<div class="modal-header inset-text-background">
+						<h3 class="inset-text3">Berita Terbit hari ini!</h3>
+					</div>
+					<div class="modal-body">
+						<table class="table table-striped table-hover table-condensed">
+							<thead>
+							<tr>
+							  <th class="theader">Kategori</th>
+							  <th class="theader">Tanggal Terbit</th>
+							  <th class="theader">Judul</th>
+							  <th class="theader">Oleh</th>
+							  <th class="theader">Published by</th>
+							  <th class='theader hidden-phone'>Isi Berita</th>
+							  <th class='hidden-phone hidden-tablet hidden-desktop'>Status</th>
+							  <th class='hidden-phone hidden-tablet hidden-desktop'>Published by</th>
+							  <th class='hidden-phone hidden-tablet hidden-desktop'>Last edited by</th>
+							  <th></th>    
+							</tr>
+							</thead>
+							<tbody>
+							<%# @nl.each do |news| %>
+							<%= content_tag_for (:tr), @todaypubs  do |news| %>
+							    <td><%= news.category %></td>
+							    <td><%= news.publish_date %></td>
+							    <td><%= news.title %></td>
+							    <td><%= news.submitted_by %></td>
+							    <td><%= news.published_by %></td>
+							    <td id='newsModal' class ="modal fade hide img-polaroid"><%= news.content %></td>
+							    <td id='newsPhoto' class ="modal hide fade img-polaroid"><%= image_tag news.photo.url %></td>
+								
+							    <td class='hidden-phone hidden-tablet hidden-desktop'><%= news.status %></td>
+							    <td class='hidden-phone hidden-tablet hidden-desktop'><%= news.published_by %></td>
+							    <td class='hidden-phone hidden-tablet hidden-desktop'><%= news.last_edited_by %></td>
+							    <td>
+							    	<%#= link_to 'Lihat', newslayout_path(news)  ,{:target => "open_here"}, :data => {:toggle => 'modal'}, :class => 'btn btn-mini' %>
+									  <%= link_to 'Lihat', newslayout_path(news), :class => 'btn btn-mini btn-primary' %>
+							    </td>
+							<% end %>  
+						  	<%# end %>
+						    </tbody>
+						</table>
+					  	</div>      	
+					<% else %>
+
+					  <div class="inset-text-background">
+					    <h3 class="inset-text3">Berita dengan filter pencarian diatas tidak ditemukan!</h3>
+					  </div>
+					  
+					<% end %>
+				</div>
+				<div id="todays-stats" class ="modal hide fade">
+					<% if @todaysinput.exists? %>
+					<div class="modal-header inset-text-background">
+					    <h3 class="inset-text3">Berita masuk hari ini!</h3>
+					</div>
+					<div class="modal-body">
+					  <table class="table table-striped table-hover table-condensed">
+					    <thead>
+					    <tr>
+					      <th class='theader'>Kategori</th>
+					      <th class='theader'>Tanggal Terbit</th>
+					      <th class='theader'>Judul</th>
+					      <th class='theader'>Oleh</th>
+					      <th class='theader'>Status</th>
+					      <th class='theader'>Published by</th>
+					      <th class='theader'>Isi Berita</th>
+					      <th class='hidden-phone hidden-tablet hidden-desktop'>Published by</th>
+					      <th class='hidden-phone hidden-tablet hidden-desktop'>Last edited by</th>
+					      <th></th>    
+					    </tr>
+					    </thead>
+					    <tbody>
+					  <%# @nl.each do |news| %>
+					    <%= content_tag_for (:tr), @todaysinput  do |news| %>
+					        <td><%= news.category %></td>
+					        <td><%= news.publish_date %></td>
+					        <td><%= news.title %></td>
+					        <td><%= news.submitted_by %></td>
+					        <td><% if news.status == "1" %>
+					        		Published
+					        	<% else %>	
+					        		Unpublished
+					        	<% end 	%></td>
+					        <td><%= news.published_by %></td>
+					        <td id='newsModal' class ="modal fade hide img-polaroid"><%= news.content %></td>
+					        <td id='newsPhoto' class ="modal hide fade img-polaroid"><%= image_tag news.photo.url %></td>
+					    	
+					        <td class='hidden-phone hidden-tablet hidden-desktop'><%= news.published_by %></td>
+					        <td class='hidden-phone hidden-tablet hidden-desktop'><%= news.last_edited_by %></td>
+					        <td>
+					        	<%#= link_to 'Lihat', newslayout_path(news)  ,{:target => "open_here"}, :data => {:toggle => 'modal'}, :class => 'btn btn-mini' %>
+					    		  <%= link_to 'Lihat', news_path(news), :class => 'btn btn-mini btn-primary' %>
+					        </td>
+					    <% end %>  
+					  <%# end %>
+					    </tbody>  
+					  </table>
+					</div>  	
+					<% else %>
+
+					  <div class="inset-text-background">
+					    <h3 class="inset-text3">Berita dengan filter pencarian diatas tidak ditemukan!</h3>
+					  </div>
+					  
+					<% end %>
+				</div>
+				
 			</div>
 		
 			<div class="tab-pane fade" id="pk-statistics">
-				<p class='lead'>Data statistik berita</p>
-				<p>Total Berita tahun ini:</p>
-				<p>Total Berita bulan ini:</p>
+				<p class='lead inset-text-background inset-text2'>Data statistik berita</p>
+				<p>Requires very very advanced further development.....</p>
+				
 			</div>
 
 			<div class="tab-pane fade" id="pk-chart">
-				<p class="lead">Diagram statistik</p>		
+				<p class="lead inset-text-background inset-text2">Diagram statistik</p>
+				<p>Requires very very advanced further Development.....</p>		
 			</div>
 		</div>
 	</div>
 </div>
 
 <% else %>
-<h4>Hello, Silahkan login terlebih dahulu.</h4>
+	<div class="well">
+		<p class="text-center">
+			<h4 class="text-center">Hello, Silahkan login terlebih dahulu.</h4>
+		</p>
+	</div>
 <% end %>
 
 

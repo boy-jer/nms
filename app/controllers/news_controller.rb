@@ -3,10 +3,17 @@ class NewsController < ApplicationController
   # GET /news
   # GET /news.json
   def index
-    @news = News.all
+    @news = News.new
+    @newsunpublished = News.where(:publish_date => params[:date], :status => "2", :submitted_by => current_user.username)
+    @newspublished = News.where(:publish_date => params[:date], :status => "1", :submitted_by => current_user.username)
+
+    @newsstats = News.any_of({:status => "1", :submitted_by => current_user.username},{:status => "2", :submitted_by => current_user.username}).count 
+    @pubnews = News.where(:status => "1", :submitted_by => current_user.username).count
+    @unpubnews = News.where(:status => "2", :submitted_by => current_user.username).count
 
     respond_to do |format|
       format.html # index.html.erb
+      format.js
       format.json { render json: @news }
     end
   end

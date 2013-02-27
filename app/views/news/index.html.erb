@@ -1,39 +1,62 @@
-<%#=t '.title', :default => model_class.model_name.human.pluralize %>
-<p class="row-fluid">
-  <h3 class="inset-text"><%=t '.title', :default => "Daftar Berita" %></h3>
-</p>
-<%= link_to 'Submit Berita', new_news_path, :class => 'btn btn-primary' %> <br />
-<table class="table table-striped table-hover">
-  <thead>
-  <tr>
-    <th>Kategori</th>
-    <th>Tanggal Terbit</th>
-    <th>Judul</th>
-    <th class='hidden-phone'>Isi Berita</th>
-    <th class='hidden-phone hidden-tablet hidden-desktop'>Status</th>
-    <th class='hidden-phone hidden-tablet hidden-desktop'>Published by</th>
-    <th class='hidden-phone hidden-tablet hidden-desktop'>Last edited by</th>
-    <th></th>    
-  </tr>
-  </thead>
-  <tbody>
-<% @news.each do |news| %>
-  <tr>
-    <td><%= news.category %></td>
-    <td><%= news.publish_date %></td>
-    <td><%= news.title %></td>
-    <td class='hidden-phone span8'><%= news.header %></td>
-    <td class='hidden-phone hidden-tablet hidden-desktop'><%= news.status %></td>
-    <td class='hidden-phone hidden-tablet hidden-desktop'><%= news.published_by %></td>
-    <td class='hidden-phone hidden-tablet hidden-desktop'><%= news.last_edited_by %></td>
-    <td><%= link_to 'Lihat', news, :class => 'btn btn-mini' %>
-    <%= link_to 'Edit', edit_news_path(news), :class => 'btn btn-mini' %>
-    <%= link_to 'Hapus', news, method: :delete, data: { confirm: 'Yakin ingin menghapus?' }, :class => 'btn btn-mini btn-danger' %></td>
-  </tr>
-<% end %>
-  </tbody>  
-</table>
+<div class="row-fluid inset-text-background">
+    <h3 class="inset-text"><%=t '.title', :default => "Manajemen Berita" %></h3>    
+</div> <br>
 
-<br />
+<div class="tabbable">
+  <ul class="nav-tabs nav">
+    <li class='active'><a href="#news-submit" data-toggle="tab">Submit berita</a></li>
+    <li><a href="#news-unpublished" data-toggle="tab">Belum terbit</a></li>
+    <li><a href="#news-published" data-toggle="tab">Sudah terbit</a></li>
+    <li><a href="#news-stats" data-toggle="tab">Statistik</a></li>
+  </ul>
+  <div class="tab-content">
+    <div id="news-submit" class="tab-pane fade active in">
+      <%#= link_to 'Submit Berita', news_index_path, :remote => true, :id => 'submit-link', :class => 'btn btn-primary' %><br />
+
+      <div id="news-submit-form" class="global-background"><%= render 'form' %></div>
+
+    </div>
+
+    <div id="news-unpublished" class="tab-pane fade">
+      <div id="search-unpublished" class="form-inline">
+        <p>Berita Anda yang belum diterbitkan.</p>
+        <%= form_tag news_index_path, :method => "get", :remote => true do %>
+          <p>
+            <%= text_field_tag :date, params[:date], :class => 'pickdate', :placeholder => "Tanggal terbit..." %>
+            <%= submit_tag "Cari Berita", :class => 'btn btn-primary' %><br />
+          </p>
+        <% end %>
+      </div>
+      <div id="unpublished-news" class="global-background"></div>      
+    </div>
+
+    <div id="news-published" class="tab-pane fade">
+      <div id="search-published" class="form-inline">
+        <p>Berita Anda yang sudah diterbitkan.</p>
+        <%= form_tag news_index_path, :method => "get", :remote => true do %>
+          <p>
+            <%= text_field_tag :date, params[:date], :class => 'pickdate', :placeholder => "Tanggal terbit..." %>
+            <%= submit_tag "Cari Berita", :class => 'btn btn-primary' %><br />
+          </p>
+        <% end %>
+      </div>
+      <div id="published-news" class="global-background"></div>
+    </div>  
+
+    <div id="news-stats" class="tab-pane fade global-background2">
+      <p class='lead'>Data Statistik Anda</p> 
+      <dl class="dl-horizontal">
+        <dt>Total jumlah berita anda:</dt>
+        <dd><p><%= @newsstats %></p></dd>
+        <dt>Total berita anda yang diterbitkan:</dt>
+        <dd><p><%= @pubnews %></p></dd>
+        <dt>Total berita anda yang tidak diterbitkan:</dt>
+        <dd><p><%= @unpubnews %></p></dd>
+      </dl>
+    </div>
+
+  </div>
+</div> 
+
 
 

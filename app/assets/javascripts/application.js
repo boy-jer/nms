@@ -19,8 +19,6 @@
 //= require_self
 //= require_tree .
 
-
-
 $(function(){
 	//datepicker
 	$('.pickdate').datepicker({
@@ -34,6 +32,5 @@ $(function(){
 
 	//newslayout modal
 	$('.newsModal').modal()	
-
 })
 

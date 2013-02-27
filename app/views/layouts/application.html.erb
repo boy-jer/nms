@@ -21,46 +21,45 @@
 			<div class="span12 headerbar-wrapper">
 				<div class="span4 headerbar-logo"><b class="display-date"><strong><%= Time.now.strftime("%d %B %Y") %></strong></b>
 				</div>
-				<div class="span8 headerbar-usernav">
+				<div class="span11 headerbar-usernav">
 					<% if user_signed_in? %>
 						  <b class="header-link"><i class="icon-user icon-white"></i> <%= current_user.username %></b> 
 					<% else %>
-						<div class="row-fluid">
-							<div class="span5 offset8 login-wrapper">
-							<%= form_for("user", :url => user_session_path, :class => "form-inline") do |f| %>
+						
+							<div class="offset8 login-wrapper form-inline">
+							<%= form_for("user", :url => user_session_path) do |f| %>
+								<%= f.text_field :username, :class => 'input-small', :placeholder => "Username..." %>
+								<%= f.password_field :password, :class => 'input-small', :placeholder => "Password..." %>
+								<%= f.submit "log in", :class => "btn-primary btn-info" %>
 								<div class="username-wrapper">
-									<%= f.text_field :username, :class => 'input-small', :placeholder => "Username..." %>
 								</div>
 								<div class="password-wrapper">
-									<%= f.password_field :password, :class => 'input-small', :placeholder => "Password..." %>
 								</div>
 								<div class="submit-wrapper">
-									<%= f.submit "log in", :class => "btn-primary btn-info" %>
 								</div>
 							<% end %>
 							</div>	
-						</div>
+						
 					<% end %>
 				</div>
 			</div>
 		</div>
 	    <nav class="navbar-inner">
 	        <div class="container">
-	        <a class="brand visible-phone visible-tablet" href="#">Poskota</a>
+	        <a class="brand visible-phone visible-tablet" href="#">News Management</a>
 	        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 	          <span class="icon-bar"></span>
 	          <span class="icon-bar"></span>
 	          <span class="icon-bar"></span>
 	        </a>
 	        <% if user_signed_in? %>
-	        
 		        <div class="nav-collapse">
-		        
 				  <ul class="nav">
 				  	<li><%= link_to "News Dashboard", root_path, :class => 'brand' %></li>
 		            <li><%= link_to "Manajemen Berita", news_index_path %></li>
 		            <li><%= link_to "Publish", publish_index_path %></li>
 		            <li><%= link_to "Layout", newslayout_index_path %></li>
+		            <li><%= link_to "Arsip Berita", archive_index_path %></li>
 		            <li><%= link_to "Kategori", newscategories_path %></li>
 		            <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
 		            <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
@@ -95,12 +94,13 @@
 	</div> <!--! end of #main -->
 
 	<footer>
-		<div class="foot">
+		
+			<div class="footer">
 			
-				<p>&#169; 2013. All Rights Reserved. MIT LICENSED. Developed by <a href="http://twitter.com/rianandrea">Rian Andrea</a> - <a href="http://autre.co">auTre Systems Inc.</a> </p>
+				<p>&#169; 2013. All Rights Reserved. <a href="/LICENSE.html">MIT LICENSED</a>. Artistically crafted by <a href="http://id.linkedin.com/in/rianandrea">Rian Andrea</a> - <a href="http://autre.co"><%= image_tag "autre.png" %></p>
 				
-			
-		</div>
+			</div>
+		
 	</footer>
 </body>
 </html>

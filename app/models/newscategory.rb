@@ -2,10 +2,6 @@ class Newscategory
   include Mongoid::Document
   field :category, type: String
 
-  CATEGORIES = %w[Kriminal Nasional Megapolitan Sport Nah\ Ini\ Dia]
-#  def self.categories
-#  	 each do |cats|
-#  	 p cats.category
-#  	 end
-#  end
+  #CATEGORIES = %w[Kriminal Nasional Megapolitan Iptek Kesehatan Sport Gaya\ Hidup Selebritis Nusantara Internasional Edukasi Wisata Sorot Opini Nah\ Ini\ Dia]
+
 end

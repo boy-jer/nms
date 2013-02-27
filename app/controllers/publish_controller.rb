@@ -1,11 +1,14 @@
 class PublishController < ApplicationController
-
+  before_filter :authenticate_user!
+  respond_to :html, :js
 
   def index
-  	@published = News.where(:status => 1)
-    @unpublished = News.where(:status => 2)
+    #sleep 1
+    @published = News.where(:status => 1, :category => params[:cat], :publish_date => params[:date])
+    @unpublished = News.where(:status => 2, :category => params[:cat], :publish_date => params[:date])
   	respond_to do |format|
       format.html # index.html.erb
+      format.js
       format.json { render json: @publish }
     end
   end
@@ -32,7 +35,8 @@ class PublishController < ApplicationController
 
     respond_to do |format|
       if @publish.update_attributes(params[:publish])
-        format.html { redirect_to @publish, notice: 'Berita telah diupdate.' }
+        format.html { redirect_to action: "index", notice: 'Berita telah diupdate.' }
+        format.js
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

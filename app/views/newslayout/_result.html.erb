@@ -1,0 +1,45 @@
+<% if @nl.exists? %>
+
+  <table class="table table-striped table-hover">
+    <thead>
+    <tr>
+      <th>Kategori</th>
+      <th>Tanggal Terbit</th>
+      <th>Judul</th>
+      <th class='hidden-phone'>Header Berita</th>
+      <th class='hidden-phone'>Isi Berita</th>
+      <th class='hidden-phone hidden-tablet hidden-desktop'>Status</th>
+      <th class='hidden-phone hidden-tablet hidden-desktop'>Published by</th>
+      <th class='hidden-phone hidden-tablet hidden-desktop'>Last edited by</th>
+      <th></th>    
+    </tr>
+    </thead>
+    <tbody>
+  <%# @nl.each do |news| %>
+    <%= content_tag_for (:tr), @nl  do |news| %>
+        <td><%= news.category %></td>
+        <td><%= news.publish_date %></td>
+        <td><%= news.title %></td>
+        <td class='hidden-phone span8'><%= news.header %></td>
+        <td id='newsModal' class ="modal fade hide img-polaroid"><%= news.content %></td>
+        <td id='newsPhoto' class ="modal hide fade img-polaroid"><%= image_tag news.photo.url %></td>
+    	
+        <td class='hidden-phone hidden-tablet hidden-desktop'><%= news.status %></td>
+        <td class='hidden-phone hidden-tablet hidden-desktop'><%= news.published_by %></td>
+        <td class='hidden-phone hidden-tablet hidden-desktop'><%= news.last_edited_by %></td>
+        <td>
+        	<%#= link_to 'Lihat', newslayout_path(news)  ,{:target => "open_here"}, :data => {:toggle => 'modal'}, :class => 'btn btn-mini' %>
+    		  <%= link_to 'Lihat', newslayout_path(news), :class => 'btn btn-mini btn-primary' %>
+        </td>
+    <% end %>  
+  <%# end %>
+    </tbody>  
+  </table>
+
+<% else %>
+
+  <div class="inset-text-background">
+    <h3 class="inset-text3">Berita dengan filter pencarian diatas tidak ditemukan!</h3>
+  </div>
+  
+<% end %>

@@ -2,25 +2,21 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-
-
-    <%#= f.input :submitted_by, :input_html =>{ :value => current_user.username }, :as => :hidden %>
-    <%= f.input :category, collection: Newscategory::CATEGORIES, prompt:"Pilih kategori berita" %>
-    
+    <%= f.input :category, collection: cats, prompt:"Pilih kategori berita.." %>
     <%= f.input :publish_date, :input_html => {:class => 'datepicker'}, label: 'Tanggal Terbit' %>
     <%= f.input :title, label: 'Judul Berita', :input_html => { :class => 'span8'} %>
     <%= f.input :header, label: 'Header Berita', :as => :text, :input_html => {:class => 'span8', :rows => 4} %>
+    <%= f.input :ori_content, label: 'Berita asli', :as => :text, :input_html =>{ :class => 'span8', :rows => 10}, disabled: true %>
     <%= f.input :content, label:'Isi berita', :as => :text, :input_html =>{ :class => 'span8', :rows => 10} %>
-    <%= f.label :photo %>
+    <%= f.label :photo %>&nbsp;&nbsp;&nbsp;&nbsp;
     <%= f.file_field :photo %>
-	<%= f.input :status,:input_html =>{ :value => "1" }, :as => :hidden %>  
-    <%#= f.input :status, collection: 1..2 %>
+  	<%= f.input :status, collection: ([['Published', 1],['Unpublished', 2]]), prompt:"Ubah status berita.."  %>
     <%= f.input :published_by,:input_html =>{ :value => current_user.username }, :as => :hidden %>
     <%= f.input :last_edited_by,:input_html =>{ :value => current_user.username }, :as => :hidden %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, 'Publish berita', :class => 'btn btn-primary' %>
+    <%= f.button :submit, 'Update berita', :class => 'btn btn-primary' %>
     <%= link_to 'Batal', publish_index_path, :class => 'btn btn-danger' %>
   </div>
 <% end %>

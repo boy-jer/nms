@@ -1,23 +1,31 @@
-<p class="row-fluid">
+<div class="row-fluid inset-text-background">
   <h3 class="inset-text">
     Judul: <%=t '.title', :default => @news.title %> <br>
-    
+    <span class='inset-text2'>
       Kategori:
       <b><%= @news.category %>,</b>
       Tanggal Terbit:
       <b><%= @news.publish_date %>.</b>
-      
-    
+    </span>  
   </h3>
-</p>
+</div>
+
 <fieldset class='form-horizontal'>
 <div class="page-header">
     <%#=t '.title', :default => model_class.model_name.human.pluralize %>
 </div>
 <div class="news-content span9">
-  <b class ='lead'>Isi Berita:</b>
+  <b class ='lead'>Berita original:</b>
   <p>
-    <%= @news.content %>
+    <%= @news.ori_content %>
+  </p>
+  <b class ='lead'>Berita diterbitkan:</b>
+  <p>
+    <% if @news.content %>
+      <%= @news.content %>
+    <% else %>
+      Berita belum diterbitkan.
+    <%end %>
   </p>
   <b>Photo</b>
   <p>
@@ -28,7 +36,11 @@
 <div>
   <p>
     <b>Status:</b>
-    <%= @news.status  %>
+    <% if @news.status == "1" %>
+      Published
+    <% else %>    
+      Unpublished
+    <% end %>
   </p>
   <p>
     <b>Disubmit oleh:</b>
@@ -45,8 +57,9 @@
   </p>
 </div>
 
-<%= link_to 'Edit', edit_news_path(@news), :class => 'btn btn-primary' %> 
-<%= link_to 'Kembali', news_index_path,:class => "btn btn-danger" %>
+<%#= link_to 'Edit', edit_news_path(@news), :class => 'btn btn-primary' %> 
+<%#= link_to 'Kembali', news_index_path,:class => "btn btn-danger" %>
+<%= link_to_function "kembali", "history.back()", :class => "btn btn-danger"  %>
 
 
 </fieldset>

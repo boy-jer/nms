@@ -28,6 +28,7 @@ body { padding-top: 135px; }
 	.headerbar {
 		
 			background-image: url('header_true_crop_blue.jpg');
+			//background-image: url('sky2.jpg');
 			background-repeat: repeat-x;
 			//width: 100%;
 			height: 100px;
@@ -55,6 +56,7 @@ body { padding-top: 135px; }
 					padding-left: 20px;
 					//width: 700px;
 					margin-top: 5px;
+					position: fixed;
 					.header-link{ 
 						float: right;
 						padding-right: 20px;
@@ -106,9 +108,39 @@ body { padding-top: 135px; }
 
 }
 
-.foot{
-	margin-top: 5px;
-	float: left;
-	padding-right: 20px;
-	color: #6c6a6a;
-}	
+.footer{
+	background:#797979;
+	//background:#D2DFE7;
+	background-image: url('Black50.png');
+	text-align: center;
+	padding: 20px 0;
+	margin-left: -20px;
+	margin-right: -20px;
+	border-top: 1px solid #e5e5e5;
+	font-size: 15px;
+	color: #FFFFFF;
+    text-shadow: 2px 3px 3px #292929; 
+    a {	
+    	//color: #91D0FF; 
+    	//color: #E44D26;
+    	color: #FF5A30;
+    }
+    a:hover{ color: black; }
+}
+
+
+.dl-horizontal dt{
+    white-space: normal;
+    width: 300px;
+    margin-right: 5px;
+    text-align: left;
+}
+
+.dl-horizontal dd{
+	color: #D70000;
+	font-weight: bold;
+}
+
+.well {
+	text-align: center;
+}
